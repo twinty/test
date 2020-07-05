@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>aaa</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 过滤器 -->
+    <filter>
+        <filter-name>EncodingFilter</filter-name><!-- 用于为过滤器指定一个名字，该元素的内容不能为空 -->
+        <filter-class>com.sc.filter.EncodingFilter</filter-class><!-- 指定过滤器的完整限定类（位置在哪儿） -->
+        <init-param><!-- 指定初始化参数 -->
+            <param-name>encode</param-name><!-- 参数名字 -->
+            <param-value>utf-8</param-value><!--参数值。在过滤器中可以使用FilterConfig接口对象来访问初始化参数（.getInitParamter获取）  -->
+        </init-param>
+    </filter>
+    <filter-mapping><!-- 用于设置Filter所需要的的过滤资源 -->
+        <filter-name>EncodingFilter</filter-name><!--子元素 与上面进行配对，用于设置过滤器的注册名称。该值必须是 <filter>元素中声明过的过滤器名字-->
+        <url-pattern>/*</url-pattern><!--设置Filetr所拦截的请求路径 （过滤器关联的URL样式） -->
+    </filter-mapping><!-- /*表示客户发送过来的任何请求都对他进行过滤  默认为request -->
+    <listener>
+        <listener-class>com.sc.listener.MySessionListener</listener-class>
+    </listener>
+</web-app>
